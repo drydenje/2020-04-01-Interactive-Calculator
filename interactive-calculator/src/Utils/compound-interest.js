@@ -15,11 +15,28 @@ export const calcCompoundInterest = (
   return finalSavings / 100;
 };
 
-// export const mapSavingsToObject = (label,principalAmount,
-//   interestRatePercent,
-//   timesCompoundedPerPeriod,
-//   numberOfPeriods ) => {
+export const mapSavingsToObject = (
+  label,
+  principalAmount,
+  interestRatePercent,
+  timesCompoundedPerPeriod,
+  numberOfPeriods
+) => {
+  const num = 10;
+  let arrayData = Array(num);
+  arrayData = [1, 2, 3].map(x => {
+    const finalValue = calcCompoundInterest(
+      principalAmount,
+      interestRatePercent,
+      timesCompoundedPerPeriod,
+      x
+    );
+    return [x, finalValue];
+  });
 
-//   const data = [[...Array(10).keys(),1].map(x=>++x),1];
-//   const
-// }
+  const obj = {
+    label: label,
+    data: arrayData
+  };
+  return obj;
+};

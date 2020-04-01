@@ -1,4 +1,28 @@
-import { calcCompoundInterest } from "./compound-interest";
+import { calcCompoundInterest, mapSavingsToObject } from "./compound-interest";
+
+test("generates an object to use on the chart", () => {
+  const principalAmount = 10000;
+  const interestRatePercent = 10;
+  const timesCompoundedPerPeriod = 1;
+  const numberOfPeriods = 1;
+  const seriesLabel = "My Label";
+
+  const finalValue = mapSavingsToObject(
+    seriesLabel,
+    principalAmount,
+    interestRatePercent,
+    timesCompoundedPerPeriod,
+    numberOfPeriods
+  );
+  expect(finalValue).toEqual({
+    label: "My Label",
+    data: [
+      [1, 11000],
+      [2, 12100],
+      [3, 13310]
+    ]
+  });
+});
 
 test("calculates the end balance after interest earned over one year", () => {
   const principalAmount = 10000;
